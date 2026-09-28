@@ -25,6 +25,7 @@ import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
 import ca.pkay.rcloneexplorer.RecyclerViewAdapters.ShareRemotesRecyclerViewAdapter;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 
 public class ShareRemotesFragment extends Fragment {
 
@@ -81,6 +82,7 @@ public class ShareRemotesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         ShareRemotesRecyclerViewAdapter recyclerViewAdapter = new ShareRemotesRecyclerViewAdapter(remotes, remoteClickListener);
         recyclerView.setAdapter(recyclerViewAdapter);
+        EdgeToEdgeHelper.applyNavigationBarPadding(recyclerView); // 沉浸式：底部避开导航栏
 
         return view;
     }

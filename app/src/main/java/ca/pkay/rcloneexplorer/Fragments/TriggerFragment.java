@@ -22,6 +22,7 @@ import ca.pkay.rcloneexplorer.Services.TriggerService;
 import ca.pkay.rcloneexplorer.Activities.TaskActivity;
 import ca.pkay.rcloneexplorer.Activities.TriggerActivity;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 
 public class TriggerFragment extends Fragment {
 
@@ -48,6 +49,7 @@ public class TriggerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_trigger, container, false);
+        EdgeToEdgeHelper.applyNavigationBarPadding(view); // 沉浸式：底部避开导航栏
         fragmentView = view;
 
         populateTriggerList(fragmentView);

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ca.pkay.rcloneexplorer.Activities.MainActivity
 import ca.pkay.rcloneexplorer.databinding.FragmentPermissionsBinding
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper
 import ca.pkay.rcloneexplorer.util.PermissionManager
 
 
@@ -24,6 +25,7 @@ class PermissionFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EdgeToEdgeHelper.applyNavigationBarPadding(view) // 沉浸式：底部避开导航栏
         updateVisibilities()
         binding.buttonAlarms.setOnClickListener {
             mPermissionManager.requestAlarms()

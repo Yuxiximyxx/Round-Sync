@@ -32,6 +32,12 @@
             android:focusable="true"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <ca.pkay.rcloneexplorer.views.DragScrollBarView
+        android:id="@+id/file_explorer_scrollbar"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
+
     <com.leinardi.android.speeddial.SpeedDialOverlayLayout
         android:id="@+id/fab_overlay"
         android:layout_width="match_parent"

@@ -20,6 +20,7 @@ import ca.pkay.rcloneexplorer.RecyclerViewAdapters.TasksRecyclerViewAdapter;
 import ca.pkay.rcloneexplorer.Activities.TaskActivity;
 import es.dmoral.toasty.Toasty;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 
 public class TasksFragment extends Fragment {
 
@@ -44,6 +45,7 @@ public class TasksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_tasks, container, false);
+        EdgeToEdgeHelper.applyNavigationBarPadding(view); // 沉浸式：底部避开导航栏
         fragmentView = view;
         populateTaskList(fragmentView);
         updateVisibilities(fragmentView);

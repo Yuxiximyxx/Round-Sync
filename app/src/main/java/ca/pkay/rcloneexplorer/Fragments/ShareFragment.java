@@ -41,6 +41,7 @@ import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
 import ca.pkay.rcloneexplorer.RecyclerViewAdapters.FileExplorerRecyclerViewAdapter;
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import de.felixnuesse.ui.BreadcrumbView;
 import es.dmoral.toasty.Toasty;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
@@ -145,6 +146,7 @@ public class ShareFragment extends Fragment implements  SwipeRefreshLayout.OnRef
         isDarkTheme = ActivityHelper.isDarkTheme(this.getActivity());
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        EdgeToEdgeHelper.applyNavigationBarPadding(recyclerView); // 沉浸式：底部避开导航栏
         recyclerView.setItemAnimator(new LandingAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         View emptyFolderView = view.findViewById(R.id.empty_folder_view);

@@ -54,6 +54,7 @@ import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
 import ca.pkay.rcloneexplorer.RecyclerViewAdapters.FileExplorerRecyclerViewAdapter;
 import ca.pkay.rcloneexplorer.Services.ThumbnailsLoadingService;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import ca.pkay.rcloneexplorer.util.FLog;
 import ca.pkay.rcloneexplorer.util.LargeParcel;
 import de.felixnuesse.ui.BreadcrumbView;
@@ -212,6 +213,7 @@ public class RemoteFolderPickerFragment extends Fragment implements   FileExplor
         Context context = view.getContext();
 
         RecyclerView recyclerView = view.findViewById(R.id.file_explorer_list);
+        EdgeToEdgeHelper.applyNavigationBarPadding(recyclerView); // 沉浸式：底部避开导航栏
         recyclerViewLinearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setItemAnimator(new LandingAnimator());
         recyclerView.setLayoutManager(recyclerViewLinearLayoutManager);

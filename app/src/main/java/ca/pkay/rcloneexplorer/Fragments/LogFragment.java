@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.RecyclerViewAdapters.LogRecyclerViewAdapter;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import ca.pkay.rcloneexplorer.util.SyncLog;
 import jp.wasabeef.recyclerview.animators.LandingAnimator;
 
@@ -39,6 +40,7 @@ public class LogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_logs, container, false);
+        EdgeToEdgeHelper.applyNavigationBarPadding(view.findViewById(R.id.log_list)); // 沉浸式：底部避开导航栏
         fragmentView = view;
 
         populateLogs(fragmentView);

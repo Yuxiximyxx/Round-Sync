@@ -85,9 +85,11 @@ import ca.pkay.rcloneexplorer.Items.Task;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
 import ca.pkay.rcloneexplorer.RecyclerViewAdapters.FileExplorerRecyclerViewAdapter;
+import ca.pkay.rcloneexplorer.views.DragScrollBarView;
 import ca.pkay.rcloneexplorer.Services.StreamingService;
 import ca.pkay.rcloneexplorer.Services.ThumbnailsLoadingService;
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import ca.pkay.rcloneexplorer.util.FLog;
 import ca.pkay.rcloneexplorer.util.LargeParcel;
 import ca.pkay.rcloneexplorer.workmanager.EphemeralTaskManager;
@@ -287,6 +289,16 @@ public class FileExplorerFragment extends Fragment implements   FileExplorerRecy
         recyclerViewAdapter.showThumbnails(showThumbnails);
         recyclerViewAdapter.setWrapFileNames(wrapFilenames);
         recyclerView.setAdapter(recyclerViewAdapter);
+
+        // 沉浸式：列表内容延伸到导航栏下方，底部 padding 避开导航栏
+        EdgeToEdgeHelper.applyNavigationBarPadding(recyclerView);
+        EdgeToEdgeHelper.applyNavigationBarMargin(view.findViewById(R.id.bottom_bar));
+        EdgeToEdgeHelper.applyNavigationBarMargin(view.findViewById(R.id.move_bar));
+
+        // 右侧可拖动快速滚动条
+        DragScrollBarView scrollBar = view.findViewById(R.id.file_explorer_scrollbar);
+        EdgeToEdgeHelper.applyNavigationBarPadding(scrollBar);
+        scrollBar.attachTo(recyclerView);
 
         if (remote.isRemoteType(RemoteItem.SFTP) && !goToDefaultSet & savedInstanceState == null) {
             showSFTPgoToDialog();
