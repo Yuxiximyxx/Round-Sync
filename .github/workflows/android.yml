@@ -26,6 +26,9 @@ jobs:
       id: go
     - name: Setup Android SDK/NDK
       uses: android-actions/setup-android@v3
+      with:
+        # 'tools' package was removed from Google's SDK repo; keep only platform-tools
+        packages: platform-tools
     - name: Install NDK from gradle.properties
       run: |
         NDK_VERSION="$(grep -E "^de\.felixnuesse\.extract\.ndkVersion=" gradle.properties | cut -d'=' -f2)"
