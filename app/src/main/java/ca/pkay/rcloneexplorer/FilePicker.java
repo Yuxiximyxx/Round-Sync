@@ -34,6 +34,7 @@ import ca.pkay.rcloneexplorer.Dialogs.InputDialog;
 import ca.pkay.rcloneexplorer.Dialogs.SortDialog;
 import ca.pkay.rcloneexplorer.RecyclerViewAdapters.FilePickerAdapter;
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import ca.pkay.rcloneexplorer.util.FLog;
 import de.felixnuesse.ui.BreadcrumbView;
 import es.dmoral.toasty.Toasty;
@@ -65,7 +66,11 @@ public class FilePicker extends AppCompatActivity implements FilePickerAdapter.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityHelper.applyTheme(this);
+        EdgeToEdgeHelper.enable(this);
         setContentView(R.layout.activity_file_picker);
+        EdgeToEdgeHelper.applyStatusBarPadding(findViewById(R.id.appBar));
+        EdgeToEdgeHelper.applyNavigationBarPadding(findViewById(R.id.file_picker_list));
+        EdgeToEdgeHelper.applyNavigationBarMargin(findViewById(R.id.fab_activity_file_picker));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();

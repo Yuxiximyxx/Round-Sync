@@ -37,6 +37,7 @@ import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
 import ca.pkay.rcloneexplorer.RuntimeConfiguration;
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import ca.pkay.rcloneexplorer.util.FLog;
 import ca.pkay.rcloneexplorer.workmanager.EphemeralTaskManager;
 import es.dmoral.toasty.Toasty;
@@ -58,7 +59,10 @@ public class SharingActivity extends AppCompatActivity implements ShareRemotesFr
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityHelper.applyTheme(this);
+        EdgeToEdgeHelper.enable(this);
         setContentView(R.layout.activity_sharing);
+        EdgeToEdgeHelper.applyStatusBarPadding(findViewById(R.id.appBar));
+        EdgeToEdgeHelper.applyNavigationBarPadding(findViewById(R.id.content));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

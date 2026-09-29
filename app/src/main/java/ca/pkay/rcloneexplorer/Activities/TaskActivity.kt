@@ -30,6 +30,7 @@ import ca.pkay.rcloneexplorer.R
 import ca.pkay.rcloneexplorer.Rclone
 import ca.pkay.rcloneexplorer.SpinnerAdapters.FilterSpinnerAdapter
 import ca.pkay.rcloneexplorer.util.ActivityHelper
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import es.dmoral.toasty.Toasty
 import java.io.UnsupportedEncodingException
@@ -116,7 +117,11 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityHelper.applyTheme(this)
+        EdgeToEdgeHelper.enable(this)
         setContentView(R.layout.activity_task)
+        EdgeToEdgeHelper.applyStatusBarPadding(findViewById(R.id.appBar))
+        EdgeToEdgeHelper.applyNavigationBarPadding(findViewById(R.id.content))
+        EdgeToEdgeHelper.applyNavigationBarMargin(findViewById(R.id.saveButton))
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar

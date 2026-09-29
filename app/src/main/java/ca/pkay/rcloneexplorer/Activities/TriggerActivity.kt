@@ -10,6 +10,7 @@ import android.widget.Spinner
 import android.widget.TimePicker
 import android.os.Bundle
 import ca.pkay.rcloneexplorer.util.ActivityHelper
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper
 import ca.pkay.rcloneexplorer.R
 import es.dmoral.toasty.Toasty
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -59,7 +60,11 @@ class TriggerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityHelper.applyTheme(this)
+        EdgeToEdgeHelper.enable(this)
         setContentView(R.layout.activity_trigger)
+        EdgeToEdgeHelper.applyStatusBarPadding(findViewById(R.id.appBar))
+        EdgeToEdgeHelper.applyNavigationBarPadding(findViewById(R.id.content))
+        EdgeToEdgeHelper.applyNavigationBarMargin(findViewById(R.id.saveButton))
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar

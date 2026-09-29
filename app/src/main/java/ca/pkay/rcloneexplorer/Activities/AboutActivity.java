@@ -17,6 +17,7 @@ import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Rclone;
 import ca.pkay.rcloneexplorer.RuntimeConfiguration;
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 
 
 public class AboutActivity extends AppCompatActivity {
@@ -32,7 +33,10 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityHelper.applyTheme(this);
+        EdgeToEdgeHelper.enable(this);
         setContentView(R.layout.activity_about);
+        EdgeToEdgeHelper.applyStatusBarPadding(findViewById(R.id.appBar));
+        EdgeToEdgeHelper.applyNavigationBarPadding(findViewById(R.id.content));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -53,6 +57,7 @@ public class AboutActivity extends AppCompatActivity {
         findViewById(R.id.report_bug).setOnClickListener(v -> reportBug());
         findViewById(R.id.author_github_link).setOnClickListener(v -> openAuthorGitHubLink());
         findViewById(R.id.maintainer_github_link).setOnClickListener(v -> openMaintainerGithubLink());
+        findViewById(R.id.new_maintainer_github_link).setOnClickListener(v -> openNewMaintainerGithubLink());
         findViewById(R.id.old_maintainer_github_link).setOnClickListener(v -> openOldMaintainerGithubLink());
     }
 
@@ -99,6 +104,11 @@ public class AboutActivity extends AppCompatActivity {
 
     private void openMaintainerGithubLink() {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_maintainer_url)));
+        tryStartActivity(this, browserIntent);
+    }
+
+    private void openNewMaintainerGithubLink() {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_new_maintainer_repo_url)));
         tryStartActivity(this, browserIntent);
     }
 

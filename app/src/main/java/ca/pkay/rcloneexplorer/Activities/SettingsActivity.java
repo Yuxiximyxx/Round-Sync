@@ -20,6 +20,7 @@ import ca.pkay.rcloneexplorer.Settings.SettingsFragment;
 import ca.pkay.rcloneexplorer.Settings.GeneralPreferencesFragment;
 import ca.pkay.rcloneexplorer.Settings.ThemingPreferencesFragment;
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.RuntimeConfiguration;
 
@@ -39,7 +40,10 @@ public class SettingsActivity extends AppCompatActivity implements SettingsFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityHelper.applyTheme(this);
+        EdgeToEdgeHelper.enable(this);
         setContentView(R.layout.activity_settings);
+        EdgeToEdgeHelper.applyStatusBarPadding(findViewById(R.id.appBar));
+        EdgeToEdgeHelper.applyNavigationBarPadding(findViewById(R.id.content));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();

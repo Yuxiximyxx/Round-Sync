@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import ca.pkay.rcloneexplorer.util.ActivityHelper;
+import ca.pkay.rcloneexplorer.util.EdgeToEdgeHelper;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.util.MarkdownView;
 
@@ -16,11 +17,14 @@ public class ContributorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityHelper.applyTheme(this);
+        EdgeToEdgeHelper.enable(this);
         try {
             setContentView(R.layout.activity_contributors);
         } catch (Exception e) {
             MarkdownView.closeOnMissingWebView(this, e);
         }
+        EdgeToEdgeHelper.applyStatusBarPadding(findViewById(R.id.appBar));
+        EdgeToEdgeHelper.applyNavigationBarPadding(findViewById(R.id.markdownView));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
