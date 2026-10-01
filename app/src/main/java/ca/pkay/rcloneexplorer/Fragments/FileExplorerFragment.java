@@ -65,6 +65,7 @@ import java.util.Map;
 import java.util.Stack;
 
 import ca.pkay.rcloneexplorer.Activities.MainActivity;
+import ca.pkay.rcloneexplorer.Activities.VideoPlayerActivity;
 import ca.pkay.rcloneexplorer.BuildConfig;
 import ca.pkay.rcloneexplorer.Dialogs.Dialogs;
 import ca.pkay.rcloneexplorer.Dialogs.FilePropertiesDialog;
@@ -820,7 +821,26 @@ public class FileExplorerFragment extends Fragment implements   FileExplorerRecy
 
     @Override
     public void onClickVideo(FileItem fileItem) {
-        new StreamTask(StreamTask.OPEN_AS_VIDEO).execute(fileItem);
+        // 内置播放器（NovaPlayer 风格）：上下滑动切换同目录视频
+        ArrayList<FileItem> videos = new ArrayList<>();
+        int startIndex = 0;
+        for (FileItem item : directoryObject.getDirectoryContent()) {
+            if (item.isDir()) {
+                continue;
+            }
+            String mime = item.getMimeType();
+            if (mime != null && mime.startsWith("video/")) {
+                if (item.getPath() != null && item.getPath().equals(fileItem.getPath())) {
+                    startIndex = videos.size();
+                }
+                videos.add(item);
+            }
+        }
+        if (!videos.isEmpty() && getContext() != null) {
+            VideoPlayerActivity.start(getContext(), remote, videos, startIndex);
+        } else {
+            new StreamTask(StreamTask.OPEN_AS_VIDEO).execute(fileItem);
+        }
     }
 
     @Override
