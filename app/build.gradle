@@ -5,8 +5,10 @@ apply plugin: 'kotlinx-serialization'
 android {
     signingConfigs {
         release {
-            keyAlias 'fdroid'
+            keyAlias System.getenv('ROUNDSYNC_KEY_ALIAS') ?: 'roundsync'
             storeFile file('.config/android/roundsync.keystore')
+            storePassword System.getenv('ROUNDSYNC_STORE_PASSWORD')
+            keyPassword System.getenv('ROUNDSYNC_KEY_PASSWORD')
         }
     }
     ndkVersion project.properties['de.felixnuesse.extract.ndkVersion']
@@ -17,8 +19,8 @@ android {
         minSdkVersion 23
         compileSdk 34
         targetSdkVersion 34
-        versionCode 410 // last digit is reserved for ABI, only ever end on 0!
-        versionName '2.5.7'
+        versionCode 420 // last digit is reserved for ABI, only ever end on 0!
+        versionName '2.6.0'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "java.lang.String", "CLI", System.getenv('RCX_BUILD_CLI') ? System.getenv('RCX_BUILD_CLI') : "\"c03129b6-b09f-9cb4-8fcd-7f143b8f94ef\""
         buildConfigField "java.lang.String", "VCP_AUTHORITY", "\"" + applicationId + ".vcp\"";
